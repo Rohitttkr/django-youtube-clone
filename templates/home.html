@@ -1,0 +1,165 @@
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Material Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+  <!-- CSS File -->
+  <link rel="stylesheet" href="{% static 'home.css' %}">
+  <title>Final - Youtube UI Clone</title>
+</head>
+
+<body>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Video Upload</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form action="" method="post" enctype="multipart/form-data">
+
+          {% csrf_token %}
+      
+          <input type="hidden" name="firstName" value="{{ user.first_name }}">
+          <input type="hidden" name="lastName" value="{{ user.last_name }}">
+          <input type="hidden" name="pic" value="http://127.0.0.1:8000{{ pic.url }}">
+          <input type="text" name="title"><br><br>
+          <input type="text" name="tags"><br><br>
+          <input type="file" name="tumb"><br><br>
+          <input type="file" name="video"><br><br>
+      
+          <button type="submit">Submit</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Header Starts -->
+  <div class="header">
+    <div class="header__left">
+      <i id="menu" class="material-icons">menu</i>
+      <img src="https://logos-world.net/wp-content/uploads/2020/04/YouTube-Logo-2017-present.jpg" alt="" />
+    </div>
+
+    <div class="header__search">
+      <form action="">
+        <input type="text" placeholder="Search" />
+        <button><i class="material-icons">search</i></button>
+      </form>
+    </div>
+
+    <div class="header__icons">
+      <i class="material-icons display-this">search</i>
+      <i class="material-icons" data-bs-toggle="modal" data-bs-target="#exampleModal">videocam</i>
+      <i class="material-icons">apps</i>
+      <i class="material-icons">notifications</i>
+      <img src="{{ pic.url }}" id="profile" alt="">
+
+    </div>
+  </div>
+  <!-- Header Ends -->
+
+  <!-- Main Body Starts -->
+  <div class="mainBody">
+    <!-- Sidebar Starts -->
+    <div class="sidebar">
+      <div class="sidebar__categories">
+        <div class="sidebar__category">
+          <i class="material-icons" style="color: red;">home</i>
+          <span>Home</span>
+        </div>
+        <div class="sidebar__category">
+          <i class="material-icons">local_fire_department</i>
+          <span>Trending</span>
+        </div>
+        <div class="sidebar__category">
+          <i class="material-icons">subscriptions</i>
+          <span>Subcriptions</span>
+        </div>
+      </div>
+      <hr />
+      <div class="sidebar__categories">
+        <div class="sidebar__category">
+          <i class="material-icons">library_add_check</i>
+          <span>Library</span>
+        </div>
+        <div class="sidebar__category">
+          <i class="material-icons">history</i>
+          <span>History</span>
+        </div>
+        <div class="sidebar__category">
+          <i class="material-icons">play_arrow</i>
+          <span>Your Videos</span>
+        </div>
+        <div class="sidebar__category">
+          <i class="material-icons">watch_later</i>
+          <span>Watch Later</span>
+        </div>
+        <div class="sidebar__category">
+          <i class="material-icons">thumb_up</i>
+          <span>Liked Videos</span>
+        </div>
+      </div>
+      <hr />
+    </div>
+    <!-- Sidebar Ends -->
+
+    <!-- Videos Section -->
+    <div class="videos">
+      <h1>Recommended</h1>
+
+
+
+      <div class="videos__container">
+        {% for x in video %}
+        <!-- Single Video starts -->
+        <div class="video">
+          <div class="video__thumbnail">
+            <img src="{{ x.video_tumb.url }}" alt="" />
+          </div>
+          <div class="video__details">
+            <div class="author">
+              <img src="{{ x.pic }}" alt="" />
+            </div>
+            <div class="title">
+              <h3>
+                <!-- Top 5 Programming Languages to Learn in 2021 | Best Programming Languages to Learn -->
+                {{ x.video_title }}
+              </h3>
+              <a href="">{{ x.firstName }} {{ x.lastname }}</a>
+              <!-- <span>10M Views • 3 Months Ago</span> -->
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+        <!-- Single Video Ends -->
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+    integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+    integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

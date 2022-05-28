@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Login and Registration Form in HTML | CodingNepal</title>
+      <link rel="stylesheet" href="{% static 'login.css' %}">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+   <body>
+      <div class="wrapper">
+         <div class="title-text">
+            <div class="title signup">
+               Signup Form
+            </div>
+         </div>
+         <div class="form-container">
+            <br>
+            <center>
+               <h5 style="color: red;">{{ msg }}</h5>
+           </center>
+            <div class="form-inner">
+               
+               {% if otp %}
+               
+               <form method="GET" action="{% url 'signup' %}" class="signup">
+                  {% csrf_token %}
+                    <input type="hidden" value="{{ user }}" name="user_enter_otp">
+                     <div class="field">
+                        <input type="text" placeholder="Enter OTP" name="ottp" required>
+                     </div> 
+                     <div class="field btn">
+                        <div class="btn-layer"></div>
+                        <input type="submit" value="Signup">
+                     </div>
+                  </form>
+               
+               {% else %}
+               
+               <form method="POST" action="{% url 'signup' %}" class="signup">
+               {% csrf_token %}
+                 
+                  <div class="field">
+                     <input type="text" placeholder="Full Name" name="name" required>
+                  </div>
+                  <div class="field">
+                     <input type="email" placeholder="Email" name="email" required>
+                  </div> 
+                  <div class="field">
+                     <input type="password" placeholder="Password" name="pass" required>
+                  </div>  
+                  <div class="field">
+                     <input type="password" placeholder="Password" name="cpass" required>
+                  </div>  
+                  <div class="field btn">
+                     <div class="btn-layer"></div>
+                     <input type="submit" value="Signup">
+                  </div>
+               </form>
+
+               {% endif %}
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

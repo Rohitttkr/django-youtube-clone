@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Login and Registration Form in HTML | CodingNepal</title>
+      <link rel="stylesheet" href="{% static 'login.css' %}">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+   <body>
+      <div class="wrapper">
+         <div class="title-text">
+            <div class="title signup">
+               Login Form
+            </div>
+         </div>
+         <div class="form-container">
+             <br>
+            <center>
+                <h5 style="color: red;">{{ msg }}</h5>
+            </center>
+
+            <div class="form-inner">
+               
+               <form method="POST" action="{% url 'login' %}" class="signup">
+               {% csrf_token %}
+ 
+                  <div class="field">
+                     <input type="email" placeholder="Email" name="email" required>
+                  </div> 
+                  <div class="field">
+                     <input type="password" placeholder="Password" name="pass" required>
+                  </div>  
+                  <div class="field btn">
+                     <div class="btn-layer"></div>
+                     <input type="submit" value="Signup">
+                  </div>
+               </form>
+
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
