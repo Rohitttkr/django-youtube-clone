@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-wno7g%@t%^nv=7f6$0((77wpbeo_kocbrtfit5p=18^kmtrh7j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1','youtub-clone-by-rohit.herokuapp.com]
+ALLOWED_HOSTS = ['127.0.0.1','youtub-clone-by-rohit.herokuapp.com']
 
 
 # Application definition
